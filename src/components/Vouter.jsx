@@ -2,6 +2,7 @@ import { Component, Fragment } from 'react';
 import { Section } from './Section/Section';
 import { FeedBackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistic } from './Statistics/Statistics';
+import s from './Statistics/statistics.module.css';
 
 export class Vouter extends Component {
   static propTypes = {};
@@ -25,7 +26,7 @@ export class Vouter extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const { good, neutral} = this.state;
+    const { good, neutral } = this.state;
     if (this.countTotalFeedback() > 0) {
       return Math.floor(((good + neutral) / this.countTotalFeedback()) * 100);
     }
@@ -36,31 +37,25 @@ export class Vouter extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          {/* <div>
-            <button name="good" type="button" onClick={this.onLeaveFeedback}>
-              Good
-            </button>
-            <button name="neutral" type="button" onClick={this.onLeaveFeedback}>
-              Neutral
-            </button>
-            <button name="bad" type="button" onClick={this.onLeaveFeedback}>
-              Bad
-            </button>
-          </div> */}
-          <FeedBackOptions 
-          // options={"good", "neutral", "bad"}
-           onLeaveFeedback={this.onLeaveFeedback}/>
+          <FeedBackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
         </Section>
 
-        {this.countTotalFeedback() && <Section title="Statistics">
-          <Statistic
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
-        </Section>}
+        {!this.countTotalFeedback() ? (
+          <span className={s.text}>No feedback given</span>
+        ) : (
+          <Section title="Statistics">
+            <Statistic
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          </Section>
+        )}
       </>
     );
   }

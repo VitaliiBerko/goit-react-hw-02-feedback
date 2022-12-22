@@ -1,9 +1,10 @@
-import { Fragment } from "react";
-import { Vouter } from "./Vouter";
+import { Fragment } from 'react';
+import { Vouter } from './Vouter';
 
 export const App = () => {
-  return <Fragment>
-    <Vouter/>   
-    
-  </Fragment>;
+  return (
+    <Fragment>
+      <Vouter />
+    </Fragment>
+  );
 };

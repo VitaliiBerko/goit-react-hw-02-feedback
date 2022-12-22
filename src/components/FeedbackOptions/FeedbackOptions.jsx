@@ -4,21 +4,22 @@ import s from 'components/FeedbackOptions/feedbackOptions.module.css';
 export const FeedBackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      <button name="good" type="button" onClick={onLeaveFeedback}>
-        Good
-      </button>
-      <button name="neutral" type="button" onClick={onLeaveFeedback}>
-        Neutral
-      </button>
-      <button name="bad" type="button" onClick={onLeaveFeedback}>
-        Bad
-      </button>
+      {options.map((option, index) => (
+        <button
+          key={index}
+          onClick={onLeaveFeedback}
+          name={option}
+          type="button"
+          className={s.feedbackBtn}
+        >
+          {option}
+        </button>
+      ))}
     </>
-
-    // <>
-    //   <button type="button" onClick={onLeaveFeedback}>Good</button>
-    //   <button type="button">Neutral</button>
-    //   <button type="button">Bad</button>
-    // </>
   );
+};
+
+FeedBackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
