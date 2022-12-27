@@ -4,9 +4,9 @@ import s from 'components/FeedbackOptions/feedbackOptions.module.css';
 export const FeedBackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      {options.map((option, index) => (
+      {options.map((option) => (
         <button
-          key={index}
+          key={option}
           onClick={onLeaveFeedback}
           name={option}
           type="button"

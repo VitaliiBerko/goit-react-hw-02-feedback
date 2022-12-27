@@ -2,7 +2,7 @@ import { Component, Fragment } from 'react';
 import { Section } from './Section/Section';
 import { FeedBackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistic } from './Statistics/Statistics';
-import s from './Statistics/statistics.module.css';
+import { Notification } from './Notification/Notification';
 
 export class Vouter extends Component {
   static propTypes = {};
@@ -26,9 +26,9 @@ export class Vouter extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const { good, neutral } = this.state;
+    const { good } = this.state;
     if (this.countTotalFeedback() > 0) {
-      return Math.floor(((good + neutral) / this.countTotalFeedback()) * 100);
+      return Math.floor((good / this.countTotalFeedback()) * 100);
     }
   };
 
@@ -44,7 +44,7 @@ export class Vouter extends Component {
         </Section>
 
         {!this.countTotalFeedback() ? (
-          <span className={s.text}>No feedback given</span>
+          <Notification message="No feedback given" />
         ) : (
           <Section title="Statistics">
             <Statistic
