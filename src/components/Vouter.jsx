@@ -5,8 +5,7 @@ import { Statistic } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
 
 export class Vouter extends Component {
-  static propTypes = {};
-
+  
   state = {
     good: 0,
     neutral: 0,
